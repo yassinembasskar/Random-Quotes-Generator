@@ -12,41 +12,66 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: url('images/background2.jpg') no-repeat center center fixed;
+            background: url('/images') no-repeat center center fixed;
             background-size: cover;
-            font-family: Arial, sans-serif;
+            font-family: 'Times New Roman', serif;
             color: white;
             text-align: center;
+            overflow: hidden; /* Prevents scrollbars */
         }
 
         .quote-container {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            opacity: 0; /* Start with invisible container */
+            transition: opacity 1s ease-in; /* Fade in effect */
+        }
+
+        .quote-container.loaded {
+            opacity: 1; /* Show container when loaded */
         }
 
         .quote {
-            font-size: 2em;
-            margin-bottom: 10px;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
         .author {
-            font-size: 1.2em;
+            font-size: 1.5em;
             font-style: italic;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .genres {
-            font-size: 1em;
-            color: #ddd;
+            font-size: 1.2em;
+            color: #ccc;
+        }
+
+        a {
+            color: #ff6f61;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="quote-container">
-        <div class="quote">"Variable"</div>
-        <div class="author">- variable</div>
-        <div class="genres">Genres: Variable</div>
+    <div class="quote-container" id="quoteContainer">
+        <div class="quote">"This is a quote"</div>
+        <div class="author">- "This is the author"</div>
+        <div class="genres">Genres: "This is the genres"</div>
     </div>
+
+    <script>
+        // Ensure the quote container only shows after the background has loaded
+        window.addEventListener('load', function() {
+            document.getElementById('quoteContainer').classList.add('loaded');
+        });
+    </script>
 </body>
 </html>
